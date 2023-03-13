@@ -4,7 +4,7 @@ How to run my version:
 ```bash
 mkdir Project-Cerberus
 cd Project-Cerberus
-~/.local/bin/repo init -u https://github.com/jacc-sovv/cerberus-dev-manifest -b master (In this example, repo is located in ~/.local/bin/repo. Change this to be the location of the repo program)
+~/.local/bin/repo init -u https://github.com/cryptoknight13/cerberus-dev-manifest -b master (In this example, repo is located in ~/.local/bin/repo. Change this to be the location of the repo program)
 ~/.local/bin/repo sync
 cd cerberus
 rm -rf build
