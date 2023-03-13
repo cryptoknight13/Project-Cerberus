@@ -1,0 +1,50 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /s/chopin/k/grad/rpodder/Rakesh/Project-Cerberus/cerberus/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/bin/ninja-build cmTC_55fc1 && [1/2] Building C object CMakeFiles/cmTC_55fc1.dir/src.c.o
+[2/2] Linking C executable cmTC_55fc1
+FAILED: cmTC_55fc1 
+: && /bin/cc -g -O0 --coverage -fprofile-arcs -ftest-coverage  CMakeFiles/cmTC_55fc1.dir/src.c.o -o cmTC_55fc1   && :
+CMakeFiles/cmTC_55fc1.dir/src.c.o: In function `main':
+/s/chopin/k/grad/rpodder/Rakesh/Project-Cerberus/cerberus/build/CMakeFiles/CMakeTmp/src.c:11: undefined reference to `pthread_create'
+/s/chopin/k/grad/rpodder/Rakesh/Project-Cerberus/cerberus/build/CMakeFiles/CMakeTmp/src.c:12: undefined reference to `pthread_detach'
+/s/chopin/k/grad/rpodder/Rakesh/Project-Cerberus/cerberus/build/CMakeFiles/CMakeTmp/src.c:13: undefined reference to `pthread_cancel'
+/s/chopin/k/grad/rpodder/Rakesh/Project-Cerberus/cerberus/build/CMakeFiles/CMakeTmp/src.c:14: undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /s/chopin/k/grad/rpodder/Rakesh/Project-Cerberus/cerberus/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/bin/ninja-build cmTC_80d2d && [1/2] Building C object CMakeFiles/cmTC_80d2d.dir/CheckFunctionExists.c.o
+[2/2] Linking C executable cmTC_80d2d
+FAILED: cmTC_80d2d 
+: && /bin/cc -g -O0 --coverage -fprofile-arcs -ftest-coverage -DCHECK_FUNCTION_EXISTS=pthread_create  CMakeFiles/cmTC_80d2d.dir/CheckFunctionExists.c.o -o cmTC_80d2d  -lpthreads && :
+/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+
